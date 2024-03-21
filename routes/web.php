@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SuccessController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,3 +32,7 @@ Route::get('/voos', [FlightsController::class, 'voo'])-> name('voo')->middleware
 Route::get('/pagamento', [PaymentController::class, 'pagar'])-> name('pagamento')->middleware('auth');
 
 Route::get('/sucesso', [SuccessController::class, "pagamentoRealizado"])-> name('sucesso')->middleware('auth');
+
+Route::get('/pagamento', [CardController::class, 'index'])->name('cards.index');
+
+Route::delete('/cards/{id}', [CardController::class, 'destroy'])->name('cards.destroy');

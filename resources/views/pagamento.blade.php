@@ -23,9 +23,7 @@
             <label class="name">
                 <p>Nome no Cartão</p><input type="text" required class="tamanho">
             </label>
-            <label class="valor">
-                <h3>Valor total: R$ 00.00</h3>
-            </label>
+
             <label class="numbem">
                 <p>Número do Cartão</p><input type="text" maxlength="16" required class="tamanho">
             </label>
@@ -38,8 +36,32 @@
             <button class="tamanho"><a href="./sucesso">Finalizar Pagamento</a></button>
 
         </form>
+    </div>
+    <div>
+        <tbody>
 
-
+        <h3>Informações da passagem</h3>
+            @foreach($cards->all() as $card)
+                <label >
+                    <p>Preço: {{ $card->price }}</p>
+                </label>
+                <label>
+                    <p>Data: {{ $card->date }}</p>
+                </label>
+                <label>
+                    <p>Local: {{ $card->local }}</p>
+                </label>
+                <label>
+                    <p>Horário: {{ $card->time }}</p>
+                </label>
+            @endforeach
+    
+                    <form action="{{ route('cards.destroy', $card->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">Deletar</button>
+                    </form>
+            </tbody>
     </div>
 </body>
 
